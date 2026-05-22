@@ -13,17 +13,22 @@ func FromTo(from, to int) string {
 		step = -1
 	}
 
-	for i := from; i != to+step; i += step {
-		if result != "" {
-			result += ", "
-		}
-		if i < 10 {
-			result += "0" + string(rune('0'+i))
+	for {
+		// Format number with leading zero if less than 10
+		if from < 10 {
+			res += "0" + string(rune('0'+from))
 		} else {
-			result += string(rune('0'+i/10)) + string(rune('0'+i%10))
+			res += string(rune('0'+from/10)) + string(rune('0'+from%10))
 		}
+
+		if from == to {
+			break
+		}
+		res += ", "
+		from += step
 	}
-	return result + "\n"
+
+	return res + "\n"
 }
 
 func main() {

@@ -6,7 +6,7 @@ func prime(nb int) bool {
 	if nb < 2 {
 		return false
 	}
-	for i := 0; i*i <= nb; i++ {
+	for i := 2; i*i <= nb; i++ {
 		if nb%i == 0 {
 			return false
 		}
@@ -16,9 +16,10 @@ func prime(nb int) bool {
 
 func FindPrevPrime(nb int) int {
 	for i := nb; i >= 2; i-- {
-		if isPrime(i) {
+		if prime(i) {
 			return i
 		}
+
 	}
 	return 0
 }

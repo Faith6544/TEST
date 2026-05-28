@@ -8,11 +8,11 @@ func HashCode(dec string) string {
 	for _, ch := range dec {
 		c := (int(ch) + size) % 127
 
-		if c < 32 {
+		// FIXED: Added '|| c == 127' to catch the unprintable DEL character
+		if c < 32 || c == 127 {
 			c += 33
 		}
 		hash += string(rune(c))
-
 	}
 	return hash
 }

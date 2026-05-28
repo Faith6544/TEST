@@ -4,14 +4,26 @@ import "fmt"
 
 func RepeatAlpha(s string) string {
 	result := ""
-	for i, ch := range s {
+	count := 1
+	for _, ch := range s {
+		if ch >= 'a' && ch <= 'z' {
+			count = int(ch - 'a' + 1)
+			for i := 0; i < count; i++ {
+				result += string(ch)
+			}
 
-		for j := 0; j < i+1; j++ {
+		} else if ch >= 'A' && ch <= 'Z' {
+			count = int(ch - 'A' + 1)
+			for i := 0; i < count; i++ {
+				result += string(ch)
+			}
+
+		} else {
 			result += string(ch)
 		}
-
 	}
 	return result
+
 }
 func main() {
 	fmt.Println(RepeatAlpha("abc"))

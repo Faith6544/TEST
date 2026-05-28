@@ -7,19 +7,21 @@ func FromTo(from, to int) string {
 		return "Invalid\n"
 	}
 
-	result := ""
+	// FIX 1: Use 'res' everywhere so it matches the rest of your code
+	res := ""
 	step := 1
 	if from > to {
 		step = -1
 	}
 
 	for {
-		// Format number with leading zero if less than 10
-		if from < 10 {
-			res += "0" + string(rune('0'+from))
-		} else {
-			res += string(rune('0'+from/10)) + string(rune('0'+from%10))
-		}
+		// FIX 2 & 3: Simplified manual 2-digit conversions using math.
+		// Since all numbers are confirmed 0-99, the tens digit is always from/10
+		// and the units digit is always from%10. This works for ALL numbers 0-99.
+		tens := from / 10
+		units := from % 10
+
+		res += string(rune('0'+tens)) + string(rune('0'+units))
 
 		if from == to {
 			break

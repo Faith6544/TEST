@@ -1,29 +1,20 @@
+// Online Go compiler to run Golang program online
+// Print "Start small. Ship something." message
+
 package main
 
 import "fmt"
 
 func RepeatAlpha(s string) string {
 	result := ""
-	count := 1
-	for _, ch := range s {
-		if ch >= 'a' && ch <= 'z' {
-			count = int(ch - 'a' + 1)
-			for i := 0; i < count; i++ {
-				result += string(ch)
-			}
+	for i, ch := range s {
 
-		} else if ch >= 'A' && ch <= 'Z' {
-			count = int(ch - 'A' + 1)
-			for i := 0; i < count; i++ {
-				result += string(ch)
-			}
-
-		} else {
+		for j := 0; j < i+1; j++ {
 			result += string(ch)
 		}
+
 	}
 	return result
-
 }
 func main() {
 	fmt.Println(RepeatAlpha("abc"))

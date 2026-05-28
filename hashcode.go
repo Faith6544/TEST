@@ -12,7 +12,7 @@ func HashCode(dec string) string {
 		if c < 32 || c == 127 {
 			c += 33
 		}
-		hash += string(rune(c))
+		hash += string(byte(c))
 	}
 	return hash
 }

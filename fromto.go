@@ -2,35 +2,29 @@ package main
 
 import "fmt"
 
-func FromTo(from, to int) string {
-	if from > 99 || from < 0 || to > 99 || to < 0 {
+func FromTo(from int, to int) string {
+	if from < 0 || to > 99 || to < 0 || from > 99 {
 		return "Invalid\n"
 	}
-
-	// FIX 1: Use 'res' everywhere so it matches the rest of your code
-	res := ""
 	step := 1
+	var result string
 	if from > to {
 		step = -1
 	}
-
 	for {
-		// FIX 2 & 3: Simplified manual 2-digit conversions using math.
-		// Since all numbers are confirmed 0-99, the tens digit is always from/10
-		// and the units digit is always from%10. This works for ALL numbers 0-99.
 		tens := from / 10
-		units := from % 10
+		unit := from % 10
 
-		res += string(rune('0'+tens)) + string(rune('0'+units))
+		result += string(rune('0'+tens)) + string(rune('0'+unit))
 
 		if from == to {
 			break
 		}
-		res += ", "
+		result += ", "
 		from += step
 	}
+	return result + "\n"
 
-	return res + "\n"
 }
 
 func main() {

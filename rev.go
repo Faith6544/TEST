@@ -8,7 +8,9 @@ func revcomb(n int) int {
 	for i := 9; i >= 2; i-- {
 		for j := i - 1; j >= 1; j-- {
 			for k := j - 1; k >= 0; k-- {
-				fmt.Printf("%d%d%d", i, j, k)
+				fmt.Print(i)
+				fmt.Print(j)
+				fmt.Print(k)
 				count++
 				if i == 2 && j == 1 && k == 0 {
 					fmt.Print("\n")

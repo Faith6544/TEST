@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+"strconv"
+"fmt"
+)
 
 func FromTo(from int, to int) string {
 	if from < 0 || to > 99 || to < 0 || from > 99 {
@@ -11,20 +14,17 @@ func FromTo(from int, to int) string {
 	if from > to {
 		step = -1
 	}
-	for {
-		tens := from / 10
-		unit := from % 10
-
-		result += string(rune('0'+tens)) + string(rune('0'+unit))
-
-		if from == to {
-			break
+	for i := from ; i != to +step ; i+=step{
+		if i < 10 {
+			result += "0" + strconv.Itoa(i)
+		}else {
+			result += strconv.Itoa(i)
 		}
-		result += ", "
-		from += step
+		if i != to {
+			result += ", "
+		}
 	}
 	return result + "\n"
-
 }
 
 func main() {

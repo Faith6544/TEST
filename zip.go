@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import  (
+
+"fmt"
+"strconv"
+)
 
 func ZipString(s string) string {
 	if len(s) == 0 {
@@ -14,7 +18,7 @@ func ZipString(s string) string {
 		if i+1 < len(s) && s[i] == s[i+1] {
 			count++
 		} else {
-			result += string(rune('0'+count)) + string(s[i])
+			result += strconv.Itoa(count) + string(s[i])
 			count = 1
 		}
 	}

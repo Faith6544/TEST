@@ -1,35 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"github.com/01-edu/z01"
+)
 
 func PrintMemory(arr [10]byte) {
-	hexDigits := "0123456789abcdef"
-	output := ""
-
-	for i, b := range arr {
-		output += string(hexDigits[b/16]) + string(hexDigits[b%16])
+	hex := "0123456789abcdef"
+	for i, r := range arr {
+		z01.PrintRune(rune(hex[r/16]))
+		z01.PrintRune(rune(hex[r%16]))
 		if i == 3 || i == 7 || i == 9 {
-			output += "\n"
+			z01.PrintRune('\n')
 		} else {
-			output += " "
+			z01.PrintRune(' ')
 		}
 	}
-
-	for _, b := range arr {
-		if b >= 32 && b <= 126 {
-			output += string(b)
+	for _, r := range arr {
+		if r < 32 || r > 126 {
+			z01.PrintRune('.')
 		} else {
-			output += "."
+			z01.PrintRune(rune(r))
 		}
 	}
-
-	output += "\n"
-
-	for _, ch := range output {
-		fmt.Println(ch)
-	}
-}
-
-func main() {
-	PrintMemory([10]byte{'h', 'e', 'l', 'l', 'o', 16, 21, '*'})
+	z01.PrintRune('\n')
 }

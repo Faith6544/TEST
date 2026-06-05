@@ -1,26 +1,32 @@
 package main
 
-import (
-	"fmt"
-	"os"
-)
+import "fmt"
 
-func main() {
-	for _, arg := range os.Args[1:] {
-		for i := 0; i < len(arg); i++ {
-			c := arg[i]
-			if i+1 == len(arg) || arg[i+1] == ' ' {
-				if c >= 'a' && c <= 'z' {
-					c -= 32
-				}
-			} else {
-				if c >= 'A' && c <= 'Z' {
-					c += 32
-				}
-			}
-			fmt.Print(c)
+func SaveAndMiss(arg string, num int) string {
 
-		}
-		fmt.Print("\n")
+	if num <= 0 {
+		return arg
 	}
+	res := ""
+	save := true
+	for i := 0; i < len(arg); i += num {
+		end := i + num
+		if end > len(arg) {
+			end = len(arg)
+		}
+		if save {
+			res += arg[i:end]
+		}
+
+		save = !save
+	}
+	return res
+}
+func main() {
+	fmt.Println(SaveAndMiss("123456789", 3))
+	fmt.Println(SaveAndMiss("abcdefghijklmnopqrstuvwyz", 3))
+	fmt.Println(SaveAndMiss("", 3))
+	fmt.Println(SaveAndMiss("hello you all ! ", 0))
+	fmt.Println(SaveAndMiss("what is your name?", 0))
+	fmt.Println(SaveAndMiss("go Exercise Save and Miss", -5))
 }
